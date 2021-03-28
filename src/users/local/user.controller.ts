@@ -4,7 +4,7 @@ import {UserRepository} from "../core/repository/user.repository";
 import {JwtService} from "@nestjs/jwt";
 import {JwtAuthGuard} from "../auth/jwt-auth.guard";
 import {ApiBearerAuth, ApiQuery, ApiTags} from "@nestjs/swagger";
-import {RolesEnum} from "../../database/enums/roles.enum";
+import {RolesEnum} from "../core/enum/roles.enum";
 import {RoleRepository} from "../core/repository/role.repository";
 import {Roles} from "../auth/roles.decorator";
 import {PreferencesDto} from "../core/dto/preferences.dto";

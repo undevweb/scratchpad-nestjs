@@ -28,10 +28,8 @@ export class InitController {
         }
 
         const roles = await this.fixtureService.generateRoles();
-        const discordRoles = await this.fixtureService.generateDiscordRoles();
         const admins = await this.fixtureService.generateAdmins();
-        const words = await this.fixtureService.generateJob();
-        return {roles, admins, discordRoles, words};
+        return {roles, admins};
     }
 
 }

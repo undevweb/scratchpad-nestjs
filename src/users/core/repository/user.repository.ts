@@ -6,7 +6,7 @@ import {UserUpdateDto} from "../dto/user-update.dto";
 import {SocialDiscord} from "../entity/social-discord.entity";
 import {SocialGoogle} from "../entity/social-google.entity";
 import {SocialGenerated} from "../entity/social-generated.entity";
-import {RolesEnum} from "../../../database/enums/roles.enum";
+import {RolesEnum} from "../enum/roles.enum";
 
 @EntityRepository(User)
 export class UserRepository extends Repository<User> {

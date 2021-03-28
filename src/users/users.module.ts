@@ -18,8 +18,6 @@ import {EncrDecrService} from "./local/enc-decr.service";
 import {DiscordStrategy} from "./discord/discord.strategy";
 import {DiscordUserService} from "./discord/discord-user.service";
 import {DiscordController} from "./discord/discord.controller";
-import {DiscordRole} from "../discord/core/entity/discord-role.entity";
-import {DiscordRoleRepository} from "../discord/core/repository/discord-role.repository";
 import {DiscordCdn} from "../discord/core/service/discord-cdn.service";
 import {AuthService} from "./local/auth.service";
 import {SocialDiscord} from "./core/entity/social-discord.entity";
@@ -55,8 +53,7 @@ import {FixtureService} from "./core/service/fixture.service";
             SocialGoogle, SocialGoogleRepository,
             SocialLocal, SocialLocalRepository,
             SocialGenerated, SocialGeneratedRepository,
-            Role, RoleRepository,
-            DiscordRole, DiscordRoleRepository
+            Role, RoleRepository
         ]),
         PassportModule.register({defaultStrategy: 'jwt'}),
         JwtModule.register({

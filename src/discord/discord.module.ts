@@ -4,8 +4,6 @@ import {User} from "../users/core/entity/user.entity";
 import {UserRepository} from "../users/core/repository/user.repository";
 import {Role} from "../users/core/entity/role.entity";
 import {RoleRepository} from "../users/core/repository/role.repository";
-import {DiscordRole} from "./core/entity/discord-role.entity";
-import {DiscordRoleRepository} from "./core/repository/discord-role.repository";
 import {SocialLocal} from "../users/core/entity/social-local.entity";
 import {SocialLocalRepository} from "../users/core/repository/social-local.repository";
 import {SyncUserDiscordGuildController} from "./controller/sync-user-discord-guild.controller";
@@ -22,7 +20,7 @@ import {DiscordGuildsController} from "./controller/discord-guild.controller";
 
 @Module({
     providers: [
-        DiscordApi, DiscordCdn,DiscordGuildService
+        DiscordApi, DiscordCdn, DiscordGuildService
     ],
     imports: [
         HttpModule.registerAsync({
@@ -38,7 +36,6 @@ import {DiscordGuildsController} from "./controller/discord-guild.controller";
             DiscordGuild, DiscordGuildRepository,
             DiscordGuild, DiscordGuildRepository,
             DiscordGuildUser, DiscordGuildUserRepository,
-            DiscordRole, DiscordRoleRepository,
             SocialLocal, SocialLocalRepository
         ])
     ],

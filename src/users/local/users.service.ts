@@ -7,7 +7,7 @@ import {User} from "../core/entity/user.entity";
 import {RoleRepository} from "../core/repository/role.repository";
 import {EncrDecrService} from "./enc-decr.service";
 import {SocialDiscord} from "../core/entity/social-discord.entity";
-import {RolesEnum} from "../../database/enums/roles.enum";
+import {RolesEnum} from "../core/enum/roles.enum";
 
 @Injectable()
 export class UsersService {

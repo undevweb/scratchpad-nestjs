@@ -8,7 +8,7 @@ import {SocialGeneratedRepository} from "../core/repository/social-generated.rep
 import {UserService} from "../core/service/user.service";
 import {UsersService} from "../local/users.service";
 import {RoleRepository} from "../core/repository/role.repository";
-import {RolesEnum} from "../../database/enums/roles.enum";
+import {RolesEnum} from "../core/enum/roles.enum";
 
 @ApiTags('SocialGenerated')
 @ApiBearerAuth()

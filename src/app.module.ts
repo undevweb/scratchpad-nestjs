@@ -9,10 +9,8 @@ import {FixtureService} from "./users/core/service/fixture.service";
 import {UserRepository} from "./users/core/repository/user.repository";
 import {User} from "./users/core/entity/user.entity";
 import {Role} from "./users/core/entity/role.entity";
-import {DiscordRole} from "./discord/core/entity/discord-role.entity";
 import {SocialLocal} from "./users/core/entity/social-local.entity";
 import {RoleRepository} from "./users/core/repository/role.repository";
-import {DiscordRoleRepository} from "./discord/core/repository/discord-role.repository";
 import {SocialLocalRepository} from "./users/core/repository/social-local.repository";
 import { DiscordModule } from './discord/discord.module';
 
@@ -43,7 +41,6 @@ import { DiscordModule } from './discord/discord.module';
         TypeOrmModule.forFeature([
             User, UserRepository,
             Role, RoleRepository,
-            DiscordRole, DiscordRoleRepository,
             SocialLocal, SocialLocalRepository
         ]),
         UsersModule,
