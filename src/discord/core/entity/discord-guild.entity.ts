@@ -1,5 +1,6 @@
 import {Column, Entity, OneToMany, PrimaryGeneratedColumn} from 'typeorm';
 import {DiscordGuildUser} from "./discord-guild-user.entity";
+import {DiscordChannel} from "./discord-channel.entity";
 
 @Entity()
 export class DiscordGuild {
@@ -26,4 +27,9 @@ export class DiscordGuild {
         eager: true
     })
     discordGuildUsers?: DiscordGuildUser[];
+
+    @OneToMany(type => DiscordChannel, discordChannel => discordChannel.discordGuild,{
+        eager: true
+    })
+    discordChannels?: DiscordChannel[];
 }

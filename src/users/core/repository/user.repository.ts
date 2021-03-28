@@ -6,6 +6,7 @@ import {UserUpdateDto} from "../dto/user-update.dto";
 import {SocialDiscord} from "../entity/social-discord.entity";
 import {SocialGoogle} from "../entity/social-google.entity";
 import {SocialGenerated} from "../entity/social-generated.entity";
+import {RolesEnum} from "../../../database/enums/roles.enum";
 
 @EntityRepository(User)
 export class UserRepository extends Repository<User> {
@@ -27,25 +28,6 @@ export class UserRepository extends Repository<User> {
     };
 
     //////////////////// DISCORD ////////////////
-
-    findByDiscordOrCreate = async (socialDiscord: SocialDiscord): Promise<User> => {
-        let user = await this.findByDiscordId(socialDiscord.discordId);
-
-        if (!user) {
-            user = await this.save({
-                username: socialDiscord.username,
-                email: socialDiscord.email,
-                avatar: socialDiscord.avatar,
-                socialDiscord
-            });
-        } else {
-            await this.update(user.id,{
-                avatar: socialDiscord.avatar
-            });
-        }
-
-        return user;
-    };
 
     updateDiscord = async (userId, socialDiscord: SocialDiscord) => {
         await this.update(userId,{socialDiscord});

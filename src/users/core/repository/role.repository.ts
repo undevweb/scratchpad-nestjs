@@ -17,4 +17,8 @@ export class RoleRepository extends Repository<Role> {
     async findByRoleName(name : RolesEnum){
         return await this.findOne({where: {label: name}});
     }
+
+    async getDefaultRole() : Promise<Role>{
+        return await this.findOne({where: {label: RolesEnum.MEMBER}})
+    }
 }

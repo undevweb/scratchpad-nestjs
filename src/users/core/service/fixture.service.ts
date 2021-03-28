@@ -6,9 +6,9 @@ import {Role} from "../entity/role.entity";
 import {UserRepository} from "../repository/user.repository";
 import {RoleRepository} from "../repository/role.repository";
 import {EncrDecrService} from "../../local/enc-decr.service";
-import {DiscordRole} from "../entity/discord-role.entity";
+import {DiscordRole} from "../../../discord/core/entity/discord-role.entity";
 import {DiscordRolesEnum} from "../../../database/enums/discord-roles.enum";
-import {DiscordRoleRepository} from "../repository/discord-role.repository";
+import {DiscordRoleRepository} from "../../../discord/core/repository/discord-role.repository";
 import {SocialLocalRepository} from "../repository/social-local.repository";
 
 @Injectable()

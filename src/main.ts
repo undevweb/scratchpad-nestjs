@@ -7,8 +7,8 @@ async function bootstrap() {
   app.enableCors();
   const options = new DocumentBuilder()
       .addBearerAuth()
-      .setTitle('Tradyourself')
-      .setDescription('Tradyourself API description')
+      .setTitle('Scratchpad')
+      .setDescription('Scratchpad API description')
       .setVersion('1.0')
       .build();
   const document = SwaggerModule.createDocument(app, options);

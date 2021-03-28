@@ -44,7 +44,7 @@ export class DiscordController {
     async register(@Request() req, @Body() body: any) {
         const socialToken = this.jwtService.verify(body.socialToken);
         const socialDiscord = await this.discordService.socialDiscordRepository.findOne({where: {discordId: socialToken.discordId}});
-        const user = await this.usersService.userRepository.findByDiscordOrCreate(socialDiscord);
+        const user = await this.usersService.findByDiscordOrCreate(socialDiscord);
         return this.usersService.generateToken(user);
     }
 

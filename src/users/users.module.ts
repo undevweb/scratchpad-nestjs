@@ -18,14 +18,9 @@ import {EncrDecrService} from "./local/enc-decr.service";
 import {DiscordStrategy} from "./discord/discord.strategy";
 import {DiscordUserService} from "./discord/discord-user.service";
 import {DiscordController} from "./discord/discord.controller";
-import {DiscordGuild} from "./core/entity/discord-guild.entity";
-import {DiscordGuildRepository} from "./core/repository/discord-guild.repository";
-import {DiscordGuildUser} from "./core/entity/discord-guild-user.entity";
-import {DiscordGuildUserRepository} from "./core/repository/discord-guild-user.repository";
-import {DiscordRole} from "./core/entity/discord-role.entity";
-import {DiscordRoleRepository} from "./core/repository/discord-role.repository";
-import {DiscordCdn} from "./discord/discord-cdn.service";
-import {DiscordGuildsController} from "./discord/discord-guild.controller";
+import {DiscordRole} from "../discord/core/entity/discord-role.entity";
+import {DiscordRoleRepository} from "../discord/core/repository/discord-role.repository";
+import {DiscordCdn} from "../discord/core/service/discord-cdn.service";
 import {AuthService} from "./local/auth.service";
 import {SocialDiscord} from "./core/entity/social-discord.entity";
 import {SocialDiscordRepository} from "./core/repository/social-discord.repository";
@@ -38,6 +33,8 @@ import {LocalController} from "./local/local.controller";
 import {SocialGenerated} from "./core/entity/social-generated.entity";
 import {SocialGeneratedRepository} from "./core/repository/social-generated.repository";
 import {SocialGeneratedController} from "./generated/social-generated.controller";
+import {InitController} from "./InitController";
+import {FixtureService} from "./core/service/fixture.service";
 
 @Module({
     providers: [
@@ -48,7 +45,8 @@ import {SocialGeneratedController} from "./generated/social-generated.controller
         DiscordStrategy, DiscordUserService,
         DiscordCdn,
         AuthService,
-        EncrDecrService
+        EncrDecrService,
+        FixtureService
     ],
     imports: [
         TypeOrmModule.forFeature([
@@ -58,22 +56,20 @@ import {SocialGeneratedController} from "./generated/social-generated.controller
             SocialLocal, SocialLocalRepository,
             SocialGenerated, SocialGeneratedRepository,
             Role, RoleRepository,
-            DiscordGuild, DiscordGuildRepository,
-            DiscordGuildUser, DiscordGuildUserRepository,
             DiscordRole, DiscordRoleRepository
         ]),
         PassportModule.register({defaultStrategy: 'jwt'}),
         JwtModule.register({
             secret: process.env.JWT_KEY_SECRET,
             signOptions: {expiresIn: process.env.JWT_EXPIRES_IN || '600s'},
-        }),
+        })
     ],
     exports: [UsersService, EncrDecrService, DiscordUserService],
     controllers: [
+        InitController,
         AdminController,
         GoogleController,
         DiscordController,
-        DiscordGuildsController,
         LocalController,
         SocialGeneratedController,
         UserController

@@ -2,7 +2,7 @@ import {Body, Controller, Get, Param, Put, Req, UseGuards} from '@nestjs/common'
 import {ApiTags} from "@nestjs/swagger";
 import {InjectRepository} from "@nestjs/typeorm";
 import {DiscordGuildRepository} from "../core/repository/discord-guild.repository";
-import {JwtAuthGuard} from "../auth/jwt-auth.guard";
+import {JwtAuthGuard} from "../../users/auth/jwt-auth.guard";
 
 // @ApiBearerAuth()
 @ApiTags('Discord')

@@ -1,9 +1,9 @@
 import {Controller, Get, Param} from "@nestjs/common";
 import {ApiTags} from "@nestjs/swagger";
-import {FixtureService} from "../../users/core/service/fixture.service";
+import {FixtureService} from "./core/service/fixture.service";
 
 @ApiTags('Initialise')
-@Controller("init")
+@Controller("users/init")
 export class InitController {
 
     constructor(private fixtureService: FixtureService) {
@@ -31,7 +31,7 @@ export class InitController {
         const discordRoles = await this.fixtureService.generateDiscordRoles();
         const admins = await this.fixtureService.generateAdmins();
         const words = await this.fixtureService.generateJob();
-        return {roles, admins, discordRoles,words};
+        return {roles, admins, discordRoles, words};
     }
 
 }

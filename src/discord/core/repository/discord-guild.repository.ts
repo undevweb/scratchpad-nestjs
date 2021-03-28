@@ -1,8 +1,16 @@
 import {EntityRepository, In, Repository} from 'typeorm';
 import {DiscordGuild} from "../entity/discord-guild.entity";
+import {DiscordGuildUserRepository} from "./discord-guild-user.repository";
+import {InjectRepository} from "@nestjs/typeorm";
 
 @EntityRepository(DiscordGuild)
 export class DiscordGuildRepository extends Repository<DiscordGuild> {
+
+    constructor(
+        @InjectRepository(DiscordGuildUserRepository) private readonly discordGuildUserRepository: DiscordGuildUserRepository
+    ) {
+        super();
+    }
 
     findByGuildIds(guildIds) {
         return this.find({
@@ -17,30 +25,7 @@ export class DiscordGuildRepository extends Repository<DiscordGuild> {
             }
         });
         return discordGuilds;
-
-        // @todo : On fait le filtre des champs à la main le temps de trouver comment le faire automatiquement (cf sanitization)
-        // return discordGuilds.map(dg => ({
-        //     id: dg.id,
-        //     guildId: dg.guildId,
-        //     name: dg.name,
-        //     icon: dg.icon,
-        //     discordGuildUsers: dg.discordGuildUsers.map(du => ({
-        //             id: du.id,
-        //             isOwner: du.isOwner,
-        //             permissions: du.permissions,
-        //             socialDiscord:du.socialDiscord
-        //         })
-        //     )
-        // }));
     }
-
-    // return this.createQueryBuilder("discordGuild")
-    // .leftJoinAndSelect("discordGuild.discordGuildUsers", "discordGuildUsers")
-    // .leftJoinAndSelect("discordGuildUsers.user", "user")
-    // .where("discordGuild.guildId IN (:...guildIds)", {guildIds:guildIds})
-    // // .select(["discordGuild.name"])
-    // // .getSql();
-    // .execute();
 
     async findByDiscordUserJoueur(discordId) {
         return await this.find({
@@ -51,5 +36,6 @@ export class DiscordGuildRepository extends Repository<DiscordGuild> {
             }
         });
     }
+
 
 }

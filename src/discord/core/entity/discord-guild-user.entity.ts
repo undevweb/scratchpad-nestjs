@@ -1,10 +1,7 @@
 import {Column, Entity, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColumn} from 'typeorm';
-import {Role} from "./role.entity";
-import {PreferencesDto} from "../dto/preferences.dto";
 import {DiscordGuild} from "./discord-guild.entity";
-import {User} from "./user.entity";
 import {DiscordRole} from "./discord-role.entity";
-import {SocialDiscord} from "./social-discord.entity";
+import {SocialDiscord} from "../../../users/core/entity/social-discord.entity";
 
 @Entity()
 export class DiscordGuildUser {
@@ -15,7 +12,7 @@ export class DiscordGuildUser {
     @Column()
     permissions?: string;
 
-    @Column({default:false})
+    @Column({default: false})
     isOwner?: boolean;
 
     @ManyToOne(type => DiscordGuild, discordGuild => discordGuild.discordGuildUsers, {
@@ -25,7 +22,7 @@ export class DiscordGuildUser {
 
     @ManyToOne(type => SocialDiscord, socialDiscord => socialDiscord.discordGuildUsers, {
         primary: true,
-        eager:true
+        eager: true
     })
     socialDiscord?: SocialDiscord;
 

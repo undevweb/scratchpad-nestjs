@@ -6,6 +6,8 @@ import {UserDto} from "../core/dto/user.dto";
 import {User} from "../core/entity/user.entity";
 import {RoleRepository} from "../core/repository/role.repository";
 import {EncrDecrService} from "./enc-decr.service";
+import {SocialDiscord} from "../core/entity/social-discord.entity";
+import {RolesEnum} from "../../database/enums/roles.enum";
 
 @Injectable()
 export class UsersService {
@@ -54,4 +56,26 @@ export class UsersService {
     async validateGeneratedUser(generatedId:string){
         return "validateGeneratedUser";
     }
+
+
+    findByDiscordOrCreate = async (socialDiscord: SocialDiscord): Promise<User> => {
+        let user = await this.userRepository.findByDiscordId(socialDiscord.discordId);
+
+        if (!user) {
+            const roleDefault = await this.roleRepository.getDefaultRole();
+            user = await this.userRepository.save({
+                username: socialDiscord.username,
+                email: socialDiscord.email,
+                avatar: socialDiscord.avatar,
+                roles : [roleDefault],
+            socialDiscord
+        });
+        } else {
+            await this.userRepository.update(user.id,{
+                avatar: socialDiscord.avatar
+            });
+        }
+
+        return user;
+    };
 }

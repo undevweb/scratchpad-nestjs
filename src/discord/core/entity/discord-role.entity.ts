@@ -1,4 +1,4 @@
-import {User} from "./user.entity";
+import {User} from "../../../users/core/entity/user.entity";
 import {Column, Entity, ManyToMany, PrimaryGeneratedColumn} from "typeorm";
 import {DiscordGuildUser} from "./discord-guild-user.entity";
 

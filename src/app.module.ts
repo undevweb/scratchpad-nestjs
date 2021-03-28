@@ -5,16 +5,16 @@ import {ConfigModule} from '@nestjs/config';
 import {AppGateway} from './app.gateway';
 import {UsersModule} from "./users/users.module";
 import {AppController} from "./app/controller/app.controller";
-import {InitController} from "./app/controller/InitController";
 import {FixtureService} from "./users/core/service/fixture.service";
 import {UserRepository} from "./users/core/repository/user.repository";
 import {User} from "./users/core/entity/user.entity";
 import {Role} from "./users/core/entity/role.entity";
-import {DiscordRole} from "./users/core/entity/discord-role.entity";
+import {DiscordRole} from "./discord/core/entity/discord-role.entity";
 import {SocialLocal} from "./users/core/entity/social-local.entity";
 import {RoleRepository} from "./users/core/repository/role.repository";
-import {DiscordRoleRepository} from "./users/core/repository/discord-role.repository";
+import {DiscordRoleRepository} from "./discord/core/repository/discord-role.repository";
 import {SocialLocalRepository} from "./users/core/repository/social-local.repository";
+import { DiscordModule } from './discord/discord.module';
 
 @Module({
     imports: [
@@ -47,8 +47,9 @@ import {SocialLocalRepository} from "./users/core/repository/social-local.reposi
             SocialLocal, SocialLocalRepository
         ]),
         UsersModule,
+        DiscordModule,
     ],
-    controllers: [AppController, InitController],
+    controllers: [AppController],
     providers: [AppGateway, FixtureService],
 })
 export class AppModule {
